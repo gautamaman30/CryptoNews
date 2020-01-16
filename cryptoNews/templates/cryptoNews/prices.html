@@ -1,0 +1,22 @@
+{% extends 'cryptoNews/base.html'%}
+
+{% block content %}
+    {% if nf or crypto.Response %}
+        <h1>Not Found</h1>
+        <br/>
+        <p>{{nf}}</p>
+    {% else %}
+       <div class="heading">
+           <h1>{{ cryptoname }}</h1>
+       </div>
+            <br/>
+            {% for key,value in crypto.DISPLAY.items%}
+                <div class="jumbotron">
+                    <strong>Price</strong>: {{ value.USD.PRICE }}<br/>
+                    <strong>Day High</strong>: {{ value.USD.HIGHDAY }}<br/>
+                    <strong>Day Low</strong>: {{ value.USD.LOWDAY }}<br/>
+                    <strong>Market Cap</strong>: {{ value.USD.MKTCAP }}<br/>
+                </div>
+            {% endfor %}
+    {% endif %}
+{% endblock %}

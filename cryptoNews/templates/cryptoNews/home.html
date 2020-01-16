@@ -1,0 +1,54 @@
+{% extends 'cryptoNews/base.html' %}
+{% block content %}
+    <div class="">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">24h Highest</th>
+              <th scope="col">24h Lowest</th>
+              <th scope="col">Market Cap</th>
+            </tr>
+          </thead>
+          <tbody>
+           {% for key,value in price.DISPLAY.items %}
+            <tr>
+              <td>{{ key }}</td>
+              <td>{{ value.USD.PRICE}}</td>
+              <td>{{ value.USD.HIGHDAY}}</td>
+              <td>{{ value.USD.LOWDAY}}</td>
+              <td>{{ value.USD.MKTCAP}}</td>
+            </tr>
+           {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    <br/><br/>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+          <h1 class="display-4"><strong>Latest Cryptocurrency News</strong></h1>
+      </div>
+    </div>
+    <div class="container">
+        <div class="col">
+            {% for i in api.Data%}
+                <div class="card mb-3" style="max-width: 1540px;">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="{{ i.imageurl }}" class="card-img" alt="{{ i.source }}">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h3 class="card-title">{{ i.title }}</h3>
+                        <p class="card-text">{{ i.body }}</p>
+                        <a href="{{ i.url }}" class="btn btn-secondary btn-sm" target="_blank">Read more...</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br/>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
